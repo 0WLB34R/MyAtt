@@ -7,3 +7,12 @@
 <div>This is the attendance code for today:</div>
 
 <p>{{classCode}}</p>
+
+<ul>
+    <li *ngFor="let date of dates; let i = index">
+        {{date}} --> 
+        <p *ngFor="let student of studentList">
+        {{student}}
+        </p>
+    </li>
+</ul>

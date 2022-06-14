@@ -6,20 +6,20 @@ describe('ClasesComponent', () => {
   let component: ClasesComponent;
   let fixture: ComponentFixture<ClasesComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ClasesComponent ]
-    })
-    .compileComponents();
-  });
+  // beforeEach(async () => {
+  //   await TestBed.configureTestingModule({
+  //     declarations: [ ClasesComponent ]
+  //   })
+  //   .compileComponents();
+  // });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ClasesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  //   fixture = TestBed.createComponent(ClasesComponent);
+  //   component = fixture.componentInstance;
+  //   fixture.detectChanges();
+  // });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
 });

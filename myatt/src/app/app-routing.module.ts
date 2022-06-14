@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SignlogComponent } from './components/signlog/signlog.component';
-import { ClassadminComponent } from './components/classadmin/classadmin.component';
 import { AttProffComponent } from './components/att-proff/att-proff.component';
 import { AttStudentComponent } from './components/att-student/att-student.component';
+
 
 
 const routes: Routes = [
@@ -14,7 +12,6 @@ const routes: Routes = [
   {path:'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)},
   //{path:'login', component: SignlogComponent},// ...canActivate(redirectLoggedInToDashboard)},
   //{path:'dashboard', component: DashboardComponent },//...canActivate(redirectUnauthorizedToLogin)},
-  {path:'classadmin', component: ClassadminComponent },
   {path:'attp', component: AttProffComponent},
   {path:'atts', component: AttStudentComponent}
 ];

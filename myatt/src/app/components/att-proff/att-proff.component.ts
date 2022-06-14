@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DbhandlerService } from 'src/app/services/dbhandler/dbhandler.service';
-import { DatePipe } from '@angular/common';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-att-proff',
@@ -11,11 +11,22 @@ export class AttProffComponent implements OnInit {
   
   classCode!:string
   classId!:string
+  att!:any;
+  dates:string[]=[];
+  fullAtt:any[]=[];
+  studentList:any
 
-  constructor(private dbhandler: DbhandlerService) { }
+  constructor(private dbhandler: DbhandlerService, private fbAuth:AngularFireAuth) { }
 
   ngOnInit(): void {
     this.classId = this.dbhandler.infoHolder.pop();
+
+    this.dbhandler.getAClass(this.classId).subscribe((res:any) =>{
+      this.att=res.data()
+      this.studentList=res.data().Students
+      console.log("Student List: ",this.studentList)
+      this.constructArray()
+    })
 
   }
 
@@ -60,4 +71,26 @@ export class AttProffComponent implements OnInit {
     var y = temp.getUTCFullYear()
     return m+"-"+d+"-"+y
   }
+
+  constructArray(){
+    console.log(this.att.Attendances)
+    let day = 0
+    let student = 0
+    let temp = []
+     for(let i in this.att.Attendances){
+      for(let j in this.studentList){
+        console.log(i)
+        console.log(this.studentList[j])
+        temp.push(this.att.Attendances[i].Students.indexOf(j) > -1)
+        student+=1
+      }
+      this.fullAtt.push(temp)
+      day+=1
+
+      //  console.log(i)
+      //  this.dates.push(i)
+      //  console.log(this.att.Attendances[i])
+      //  this.fullAtt.push(this.att.Attendances[i].Students)
+     }
+   }
 }

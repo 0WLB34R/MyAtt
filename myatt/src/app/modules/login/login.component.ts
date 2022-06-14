@@ -16,9 +16,7 @@ export class LoginComponent implements OnInit {
   signIn() {
     const googleAuthProvider = new GoogleAuthProvider();
     this.fbAuth.signInWithPopup(googleAuthProvider).then((res:any) => {
-      //console.log(res.additionalUserInfo!.profile)
       if(res.additionalUserInfo.isNewUser){
-        console.log("OIE VOS ERES NUEVO")
         this.dbhandler.createUser(res.user!.uid,{
             ClassesAsProff:[],
             ClassesAsStudent:[],
