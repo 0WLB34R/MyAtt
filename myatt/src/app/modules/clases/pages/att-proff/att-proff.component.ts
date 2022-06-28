@@ -21,6 +21,7 @@ export class AttProffComponent implements OnInit {
   uid!:string
   className!:string
   loading:boolean=true;
+  attOpen:boolean=true;
 
   constructor(private dbhandler: DbhandlerService, private fbAuth:AngularFireAuth, private router:Router, private route:ActivatedRoute) { }
 
@@ -41,6 +42,7 @@ export class AttProffComponent implements OnInit {
       this.className = res.data().ClassName
       try{
       this.classCode = res.data().Attendances[this.getDate()].Code
+      this.attOpen = res.data().Attendances[this.getDate()].Open
       }catch (e){
         console.log("code not set yet")
       }
@@ -84,7 +86,7 @@ export class AttProffComponent implements OnInit {
     console.log(date)
     this.dbhandler.updateAttendance(this.classId,{
       [`Attendances.${date}.Open`]:false,
-    }).then(() => console.log("Success"))
+    }).then(() => this.attOpen=false)
   }
 
   openAtt(){

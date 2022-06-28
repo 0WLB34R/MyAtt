@@ -6,7 +6,7 @@
         <h2>{{className}}</h2>
     </div>
     <h4 class="caja1">Class Code: </h4>&nbsp;<h4 class="caja1" id="classId"> {{classId}}</h4>
-
+    <h4 *ngIf="!attOpen">Attendance is closed</h4>
 
     <table>
         <tr>
@@ -34,7 +34,7 @@
         </tr> -->
     </table>
 
-    <button mat-raised-button color="primary" id="closeAtt" (click)="closeAtt()">Close Attendance</button>
+    <button mat-raised-button color="primary" id="closeAtt" (click)="closeAtt()" *ngIf="attOpen && classCode">Close Attendance</button>
 
 
     <button mat-raised-button color="primary" id="takeAtt" (click)="openAtt()"*ngIf="!classCode">Take Today's Attendance</button>
